@@ -1,0 +1,63 @@
+$mediumScreen: 720px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+p {
+  margin: 0px;
+}
+
+.app {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+
+  .section {
+    border: 1px solid black;
+    background-color: #ccc;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    @media screen and (min-width: $mediumScreen) {
+      width: 50%;
+    }
+  }
+  .section:hover {
+    background-color: #aaa;
+  }
+
+  .content {
+    width: 90%;
+    margin: 0 auto;
+    text-align: justify;
+    overflow: hidden;
+    max-height: 0px;
+    background-color: #ddd;
+    transition: max-height 0.3s ease-in-out;
+    @media screen and (min-width: $mediumScreen) {
+      width: calc(50% - 10px);
+    }
+    .contentDiv {
+      padding: 10px;
+      display: block;
+    }
+  }
+  .active {
+    height: auto;
+    max-height: 500px;
+    display: block;
+    border: 0px solid black;
+    background-color: #ddd;
+  }
+}
