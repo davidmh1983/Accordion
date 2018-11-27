@@ -1,6 +1,4 @@
 import React from "react";
-import Axios from "axios";
-import ASection from "./ASection";
 import "./style.scss";
 
 class Accordeon extends React.Component {
@@ -17,30 +15,21 @@ class Accordeon extends React.Component {
     });
   };
 
+  mappingData(c) {
+    console.log("c", c);
+  }
+
   render() {
     return (
       <div className="accordion">
-        {this.props.data.map(datos => {
-          return (
-            <div>
-              <div
-                className="section"
-                onClick={() => this.clickSection(datos.id)}
-              >
-                <span key={datos.id}>{datos.title}</span>
-              </div>
-              <div
-                className={
-                  "content " +
-                  (datos.id === this.state.active ? "active" : "inactive")
-                }
-              >
-                <div className="contentDiv">
-                  <p>{datos.content}</p>
-                </div>
-              </div>
-            </div>
-          );
+        {React.Children.map(this.props.children, (Child, i) => {
+          let structure = React.cloneElement(Child, {
+            id: i,
+            key: i,
+            active: i === this.state.active ? "active" : "inactive",
+            clickSection: this.clickSection
+          });
+          return structure;
         })}
       </div>
     );
